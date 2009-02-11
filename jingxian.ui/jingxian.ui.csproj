@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\bin\Debug\</OutputPath>
+    <OutputPath>..\..\bin\Debug-2008\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -33,43 +33,43 @@
   <ItemGroup>
     <Reference Include="Empinia.Core.Runtime, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\empinia-0.2\bin\Empinia.Core.Runtime.dll</HintPath>
+      <HintPath>..\lib-2008\Empinia.Core.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Empinia.Core.Utilities, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\empinia-0.2\bin\Empinia.Core.Utilities.dll</HintPath>
+      <HintPath>..\lib-2008\Empinia.Core.Utilities.dll</HintPath>
     </Reference>
     <Reference Include="Empinia.DomainModel, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\empinia-0.2\bin\Empinia.DomainModel.dll</HintPath>
+      <HintPath>..\lib-2008\Empinia.DomainModel.dll</HintPath>
     </Reference>
     <Reference Include="Empinia.DomainModel.UI, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\empinia-0.2\bin\Empinia.DomainModel.UI.dll</HintPath>
+      <HintPath>..\lib-2008\Empinia.DomainModel.UI.dll</HintPath>
     </Reference>
     <Reference Include="Empinia.UI, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\empinia-0.2\bin\Empinia.UI.dll</HintPath>
+      <HintPath>..\lib-2008\Empinia.UI.dll</HintPath>
     </Reference>
     <Reference Include="Empinia.UI.Navigator, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\empinia-0.2\bin\Empinia.UI.Navigator.dll</HintPath>
+      <HintPath>..\lib-2008\Empinia.UI.Navigator.dll</HintPath>
     </Reference>
     <Reference Include="Empinia.UI.PropertyEditor, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\empinia-0.2\bin\Empinia.UI.PropertyEditor.dll</HintPath>
+      <HintPath>..\lib-2008\Empinia.UI.PropertyEditor.dll</HintPath>
     </Reference>
     <Reference Include="Empinia.UI.TextEditor, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\empinia-0.2\bin\Empinia.UI.TextEditor.dll</HintPath>
+      <HintPath>..\lib-2008\Empinia.UI.TextEditor.dll</HintPath>
     </Reference>
     <Reference Include="Empinia.UI.Workbench, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\empinia-0.2\bin\Empinia.UI.Workbench.dll</HintPath>
+      <HintPath>..\lib-2008\Empinia.UI.Workbench.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\empinia-0.2\bin\log4net.dll</HintPath>
+      <HintPath>..\lib-2008\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />

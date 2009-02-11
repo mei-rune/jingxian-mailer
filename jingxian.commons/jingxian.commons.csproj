@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\bin\Debug\</OutputPath>
+    <OutputPath>..\..\bin\Debug-2008\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -33,11 +33,11 @@
   <ItemGroup>
     <Reference Include="IBatisNet.Common, Version=1.6.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ibatis-src\bin\debug\IBatisNet.Common.dll</HintPath>
+      <HintPath>..\lib-2008\IBatisNet.Common.dll</HintPath>
     </Reference>
     <Reference Include="IBatisNet.DataMapper, Version=1.6.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ibatis-src\bin\debug\IBatisNet.DataMapper.dll</HintPath>
+      <HintPath>..\lib-2008\IBatisNet.DataMapper.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
