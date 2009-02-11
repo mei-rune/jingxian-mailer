@@ -65,6 +65,9 @@
     </Compile>
     <Compile Include="Models\ICell.cs" />
     <Compile Include="Models\IColumn.cs" />
+    <Compile Include="ObjectSelector.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Renderer\AdobeColors.cs" />
     <Compile Include="Renderer\DefaultColorHelper.cs" />

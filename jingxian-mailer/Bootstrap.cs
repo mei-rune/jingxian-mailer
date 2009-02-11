@@ -44,6 +44,12 @@ namespace jingxian
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+
+            jingxian.install.DbInsteller installer = new jingxian.install.DbInsteller();
+            if (installer.Instell(true))
+                return -1;
+
+
 			System.Threading.Thread.CurrentThread.Name = "jingxian GUI main";  //NON-NLS-1
 			log4net.ILog log = null;
 
