@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\bin\Debug\</OutputPath>
+    <OutputPath>..\..\bin\Debug-2008\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -41,62 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="binarycomponents\Column.cs" />
-    <Compile Include="binarycomponents\ColumnList.cs" />
-    <Compile Include="binarycomponents\Helper\AvailableSectionsControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="binarycomponents\Helper\AvailableSectionsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="binarycomponents\Helper\AvailableSectionsForm.Designer.cs">
-      <DependentUpon>AvailableSectionsForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="binarycomponents\Helper\ImageWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="binarycomponents\Helper\ImageWindow.Designer.cs">
-      <DependentUpon>ImageWindow.cs</DependentUpon>
-    </Compile>
-    <Compile Include="binarycomponents\Helper\SectionContainerControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="binarycomponents\Helper\SerializationState.cs" />
-    <Compile Include="binarycomponents\Helper\TextRendererEx.cs" />
-    <Compile Include="binarycomponents\ItemList\BufferedItemList.cs" />
-    <Compile Include="binarycomponents\ItemList\ItemList.cs" />
-    <Compile Include="binarycomponents\ListControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="binarycomponents\RowIdentifier.cs" />
-    <Compile Include="binarycomponents\Sections\AvailableColumnsSection.cs" />
-    <Compile Include="binarycomponents\Sections\CellSection.cs" />
-    <Compile Include="binarycomponents\Sections\CellSectionImage.cs" />
-    <Compile Include="binarycomponents\Sections\CustomiseGroupingSection.cs" />
-    <Compile Include="binarycomponents\Sections\CustomiseListSection.cs" />
-    <Compile Include="binarycomponents\Sections\GroupSection.cs" />
-    <Compile Include="binarycomponents\Sections\HeaderColumnSection.cs" />
-    <Compile Include="binarycomponents\Sections\HeaderSection.cs" />
-    <Compile Include="binarycomponents\Sections\HeaderSectionColumnContainer.cs" />
-    <Compile Include="binarycomponents\Sections\ISectionHost.cs" />
-    <Compile Include="binarycomponents\Sections\ListSection.cs" />
-    <Compile Include="binarycomponents\Sections\OptionsToolbarSection.cs" />
-    <Compile Include="binarycomponents\Sections\RowSection.cs" />
-    <Compile Include="binarycomponents\Sections\ScrollableSection.cs" />
-    <Compile Include="binarycomponents\Sections\Section.cs" />
-    <Compile Include="binarycomponents\Sections\SectionContainer.cs" />
-    <Compile Include="binarycomponents\Sections\SectionFactory.cs" />
-    <Compile Include="binarycomponents\SelectedItemsCollection.cs" />
-    <Compile Include="binarycomponents\Utility\Common.cs" />
-    <Compile Include="binarycomponents\Utility\ControlUtils.cs" />
-    <Compile Include="binarycomponents\Utility\EventingList.cs" />
-    <Compile Include="binarycomponents\Utility\Gdi.cs" />
-    <Compile Include="binarycomponents\Utility\GdiPlusEx.cs" />
-    <Compile Include="binarycomponents\Utility\ManifestResources.cs" />
-    <Compile Include="binarycomponents\Utility\Messages.cs" />
-    <Compile Include="binarycomponents\Utility\Set.cs" />
-    <Compile Include="binarycomponents\Utility\User.cs" />
-    <Compile Include="binarycomponents\Utility\Windows.cs" />
     <Compile Include="FastListView\Comparer.cs" />
     <Compile Include="FastListView\DataListView.cs">
       <SubType>Component</SubType>
@@ -374,37 +318,15 @@
     <Compile Include="XPTable\Win32\WindowStyles.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="binarycomponents\Helper\AvailableSectionsForm.resx">
-      <DependentUpon>AvailableSectionsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="binarycomponents\Helper\ImageWindow.resx">
-      <DependentUpon>ImageWindow.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="binarycomponents\Helper\SectionContainerControl.resx">
-      <DependentUpon>SectionContainerControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="binarycomponents\ListControl.resx">
-      <DependentUpon>ListControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="SwitchBar.resx">
       <DependentUpon>SwitchBar.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="binarycomponents\Resources\CollapseAllGroupsButton.ico" />
-    <EmbeddedResource Include="binarycomponents\Resources\CollapseGroup.ico" />
-    <EmbeddedResource Include="binarycomponents\Resources\ColumnsButton.ico" />
-    <EmbeddedResource Include="binarycomponents\Resources\DownArrow.ico" />
-    <EmbeddedResource Include="binarycomponents\Resources\ExpandAllGroupsButton.ico" />
-    <EmbeddedResource Include="binarycomponents\Resources\ExpandGroup.ico" />
-    <EmbeddedResource Include="binarycomponents\Resources\UpArrow.ico" />
     <EmbeddedResource Include="Wizards\Resources\WizardImages.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>WizardImages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="binarycomponents\SectionsDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Wizards\Resources\back.png" />
