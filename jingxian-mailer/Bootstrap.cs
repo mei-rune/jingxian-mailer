@@ -46,7 +46,7 @@ namespace jingxian
 
 
             jingxian.install.DbInsteller installer = new jingxian.install.DbInsteller();
-            if (installer.Instell(true))
+            if (!installer.Instell(true))
                 return -1;
 
 
