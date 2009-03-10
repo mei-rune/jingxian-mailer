@@ -21,11 +21,29 @@ namespace jingxian.mail.mime
         // ¾ÍÊÇBCC×Ö¶Î
         MailAddressCollection BlindCarbonCopy { get; set; }
 
-        String Subject { get; set; }
+        string Subject { get; set; }
 
         string Source { get; set; }
 
         string TextMessage { get; set; }
+
+        string HeaderFrom { get; set; }
+
+        string HeaderMessageId { get; set; }
+
+        string HeaderCC { get; set; }
+
+        string HeaderBCC { get; set; }
+
+        string HeaderSubject { get; set; }
+
+        string HeaderReferences { get; set; }
+
+        string HeaderTO { get; set; }
+
+        DateTime HeaderDate { get; set; }
+
+        DateTime ReceivedDate { get; set; }
 
         bool IsNull();
     }

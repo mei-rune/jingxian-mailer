@@ -5,34 +5,38 @@ namespace jingxian.data
     public class Message
     {
         private int _id;
+        private string _uid; 
+        private string _idparent;
         private int _idnewsserver;
         private int _itemgroup;
+
+        private int _textcolor;
+        private int _backgroundcolor;
+
+        private int _category;
+        private int _infoRead;
+        private int _messageindex;
+        private int _folder;
+        private int _messagetype;
+        private int _isspam;
+        private int _importance;
+        private string _infoReply;
+        
+        private int _headerSize;
+        private int _attachmentSize;
+
         private string _headerFrom;
         private string _headerNewsgroup;
         private string _headerMessageid;
-        private int _category;
-        private string _idparent;
-        private int _infoRead;
-        private string _infoReply;
         private string _headerMime;
         private string _headerCc;
         private string _headerBcc;
         private string _headerSubject;
         private string _headerReferences;
         private string _headerTo;
-        private int _headerSize;
-        private int _attachmentSize;
-        private int _messageindex;
-        private int _folder;
-        private int _textcolor;
-        private int _backgroundcolor;
-        private int _messagetype;
         private DateTime _headerdate;
         private DateTime _receiveddate;
-        private int _isspam;
-        private int _importance;
-        private string _uid;
-
+        
         public int Id
         {
             get { return _id; }
@@ -86,67 +90,6 @@ namespace jingxian.data
             get { return _infoReply; }
             set { _infoReply = value; }
         }
-        public string HeaderFrom
-        {
-            get { return _headerFrom; }
-            set { _headerFrom = value; }
-        }
-        public string HeaderNewsGroup
-        {
-            get { return _headerNewsgroup; }
-            set { _headerNewsgroup = value; }
-        }
-        public string HeaderMessageId
-        {
-            get { return _headerMessageid; }
-            set { _headerMessageid = value; }
-        }
-        public string HeaderMime
-        {
-            get { return _headerMime; }
-            set { _headerMime = value; }
-        }
-
-        public string HeaderCC
-        {
-            get { return _headerCc; }
-            set { _headerCc = value; }
-        }
-
-        public string HeaderBCC
-        {
-            get { return _headerBcc; }
-            set { _headerBcc = value; }
-        }
-
-        public string HeaderSubject
-        {
-            get { return _headerSubject; }
-            set { _headerSubject = value; }
-        }
-
-        public string HeaderReferences
-        {
-            get { return _headerReferences; }
-            set { _headerReferences = value; }
-        }
-
-        public string HeaderTO
-        {
-            get { return _headerTo; }
-            set { _headerTo = value; }
-        }
-
-        public int HeaderSize
-        {
-            get { return _headerSize; }
-            set { _headerSize = value; }
-        }
-        public int AttachmentSize
-        {
-            get { return _attachmentSize; }
-            set { _attachmentSize = value; }
-        }
         public int MessageIndex
         {
             get { return _messageindex; }
@@ -172,6 +115,64 @@ namespace jingxian.data
             get { return _isspam; }
             set { _isspam = value; }
         }
+
+        public int HeaderSize
+        {
+            get { return _headerSize; }
+            set { _headerSize = value; }
+        }
+        public int AttachmentSize
+        {
+            get { return _attachmentSize; }
+            set { _attachmentSize = value; }
+        }
+
+        #region Header пео╒
+        public string HeaderFrom
+        {
+            get { return _headerFrom; }
+            set { _headerFrom = value; }
+        }
+        public string HeaderNewsGroup
+        {
+            get { return _headerNewsgroup; }
+            set { _headerNewsgroup = value; }
+        }
+        public string HeaderMessageId
+        {
+            get { return _headerMessageid; }
+            set { _headerMessageid = value; }
+        }
+        public string HeaderMime
+        {
+            get { return _headerMime; }
+            set { _headerMime = value; }
+        }
+        public string HeaderCC
+        {
+            get { return _headerCc; }
+            set { _headerCc = value; }
+        }
+        public string HeaderBCC
+        {
+            get { return _headerBcc; }
+            set { _headerBcc = value; }
+        }
+        public string HeaderSubject
+        {
+            get { return _headerSubject; }
+            set { _headerSubject = value; }
+        }
+        public string HeaderReferences
+        {
+            get { return _headerReferences; }
+            set { _headerReferences = value; }
+        }
+        public string HeaderTO
+        {
+            get { return _headerTo; }
+            set { _headerTo = value; }
+        }
         public DateTime HeaderDate
         {
             get { return _headerdate; }
@@ -182,5 +183,6 @@ namespace jingxian.data
             get { return _receiveddate; }
             set { _receiveddate = value; }
         }
+        #endregion
     }
 }

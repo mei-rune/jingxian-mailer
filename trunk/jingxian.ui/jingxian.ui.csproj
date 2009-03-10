@@ -254,6 +254,12 @@
     <Compile Include="Commands\message\ForwordCommand.cs" />
     <Compile Include="Commands\message\OpenCommand.cs" />
     <Compile Include="Commands\message\DeleteAllLabelsCommand.cs" />
+    <Compile Include="controls\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="HTMLParser.cs" />
     <Compile Include="controls\ServerListDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -347,6 +353,10 @@
   <ItemGroup>
     <EmbeddedResource Include="controls\MessageViewer.resx">
       <DependentUpon>MessageViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="controls\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="controls\ServerItemControl.resx">
       <DependentUpon>ServerItemControl.cs</DependentUpon>

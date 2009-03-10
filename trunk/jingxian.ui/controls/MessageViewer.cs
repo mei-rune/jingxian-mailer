@@ -10,9 +10,13 @@ using System.Net.Mail;
 
 namespace jingxian.ui.controls
 {
+    using jingxian.mail;
+    using jingxian.mail.mime;
+
     public partial class MessageViewer : UserControl
     {
         bool ShowAllAddress = false;
+        string CSS = "";
 
         public MessageViewer()
         {
@@ -20,107 +24,126 @@ namespace jingxian.ui.controls
         }
 
 
-        //private string GenerateHeaderHtml(string caption
-        //    , string captionurl
-        //    , MailAddress[] addresses
-        //    , string linkIdIfNotPresent
-        //    , int limit)
-        //{
-        //    StringBuilder htmlHeader = new StringBuilder();
-
-        //    if (captionurl != null && captionurl != "")
-        //    {
-        //        htmlHeader.Append("<br/><a href='" + captionurl + "'><b>" + QuickHtml.HTMLParser.XMLize(caption) + "</b></a>");
-        //    }
-        //    else
-        //    {
-        //        htmlHeader.Append("<br/><b>" + QuickHtml.HTMLParser.XMLize(caption) + "</b>");
-        //    }
-
-        //    bool bFirst = true;
-        //    int addresscount = limit;
-        //    if (ShowAllAddress)
-        //        addresscount = 1000;
+        private void generateTitle(StringBuilder htmlHeader
+            , string caption
+            , string captionURL)
+        {
+            if (string.IsNullOrEmpty(captionURL))
+            {
+                htmlHeader.Append("<a href='");
+                htmlHeader.Append(captionURL);
+                htmlHeader.Append("'>");
+                htmlHeader.Append(HTMLHelper.XMLize(caption));
+                htmlHeader.Append("</a>");
+            }
+            else
+            {
+                htmlHeader.Append(HTMLHelper.XMLize(caption));
+            } 
+        }
 
 
+        private void generateHeaderHtml(StringBuilder htmlHeader
+            , IEnumerable<MailAddress> addresses
+            , int limit)
+        {
 
-        //    for(int i = 0; i < Math.Min(addresscount, addresses.Length); i++)
-        //    {
-        //        if (addresses[i] == null)
-        //            continue;
+            bool bFirst = true;
+            int addresscount = limit;
+            if (ShowAllAddress)
+                addresscount = int.MaxValue;
 
-        //        MailAddress address = addresses[i];
-        //        if (bFirst == false)
-        //        {
-        //            htmlHeader.Append(", ");
-        //            bFirst = false;
-        //        }
+            using (IEnumerator<MailAddress> enumerator = addresses.GetEnumerator())
+            {
+                while (enumerator.MoveNext())
+                {
+                    if (0 > --addresscount)
+                        break;
 
-        //        htmlHeader.Append("<tooltip text='" + QuickHtml.HTMLParser.XMLize(address.DisplayName) + "'>");
+                    MailAddress address = enumerator.Current;
+                    if (bFirst == false)
+                    {
+                        htmlHeader.Append(", ");
+                        bFirst = false;
+                    }
 
-        //        if (linkIdIfNotPresent != "" && linkIdIfNotPresent != null)
-        //        {
-        //            htmlHeader.Append("<a href='" + QuickHtml.HTMLParser.XMLize(linkIdIfNotPresent) 
-        //                + ":" + QuickHtml.HTMLParser.XMLize(address.DisplayName) + "'>");
-        //        }
-        //        else
-        //        {
-        //            htmlHeader.Append("<a href='" + QuickHtml.HTMLParser.XMLize(address.DisplayName) + "'>");
-        //        }
+                    htmlHeader.Append("<tooltip text='");
+                    htmlHeader.Append(HTMLHelper.XMLize(address.DisplayName));
+                    htmlHeader.Append("'>");
 
-        //        htmlHeader.Append(QuickHtml.HTMLParser.XMLize(address.DisplayName) + "</a>");
-        //        htmlHeader.Append("</tooltip>");
-        //    }
+                    htmlHeader.Append("<a href='");
+                    htmlHeader.Append(HTMLHelper.XMLize(address.DisplayName));
+                    htmlHeader.Append("'>");
+                    htmlHeader.Append(HTMLHelper.XMLize(address.DisplayName) + "</a>");
+                    htmlHeader.Append("</tooltip>");
+                }
+            }
 
-        //    if (addresses.Length > addresscount)
-        //    {
-        //        htmlHeader.Append(", <a href='more'>...</a>");
-        //    }
+            if (0 > addresscount)
+            {
+                htmlHeader.Append(", <a href='more'>...</a>");
+            }
+        }
 
-        //    return htmlHeader.ToString();
-        //}
+        private string GenerateHeaderHtml(IMailMessage message)
+        {
+            StringBuilder htmlHeader = new StringBuilder();
 
-        //private string GenerateHeaderHtml()
-        //{
-        //    StringBuilder htmlHeader = new StringBuilder();
+            htmlHeader.Append("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">");
+            htmlHeader.Append("<html>");
+            htmlHeader.Append("<head>");
+            htmlHeader.Append("<title> 邮件头信息 </title>");
+            htmlHeader.Append("<META NAME=\"Author\" CONTENT=\"梅发坤\">");
+            htmlHeader.Append(CSS);
+            htmlHeader.Append("</head>");
+            htmlHeader.Append("<body>");
+            htmlHeader.Append("<table>");
 
-        //    htmlHeader.Append("<font size='13'>" + QuickHtml.HTMLParser.GenerateHtmlStringWithTooltip(Message.Subject, 82) + "</font>");
+            generateBeginTitle( "headerSubject" );
+            generateTitle(htmlHeader, Resource.SUBJECT, "" );
+            generateEndTitle( );
 
-        //    htmlHeader.Append("<br/><font size='8' color='#444444'>" + Message.HeaderDate.ToString() + "</font>");
+            generateBeginField("headerSubject");
+            generateTitle(htmlHeader, message.HeaderSubject, "");
+            generateEndField();
 
 
-        //    if (Message.From != null)
-        //    {
-        //        htmlHeader.Append(GenerateHeaderHtml("From:", "from", new JingXian.Utils.MailAddress[] { Message.From }, "", "", 8));
-        //    }
+            htmlHeader.Append("<font size='13'>");
+            HTMLHelper.GenerateSubstringWithTooltip(htmlHeader, message.Subject, 82);
+            htmlHeader.Append("</font>");
 
-        //    htmlHeader.Append(GenerateHeaderHtmlAddresses(8));
+            htmlHeader.Append("<br/><font size='8' color='#444444'>");
+            htmlHeader.Append(message.HeaderDate);
+            htmlHeader.Append("</font>");
 
-        //    htmlHeader.Append(Message.CustomHeader);
+            if (null != message.From)
+            {
+                GenerateHeaderHtml(htmlHeader, Resource.FROM, "from", new MailAddress[] { message.From }, 8);
+            }
+            if (message.To.Count > 0)
+            {
+                GenerateHeaderHtml(htmlHeader, "To:", "to", message.To, 8);
+            }
 
-        //    return htmlHeader.ToString();
-        //}
+            if (message.CarbonCopy.Count > 0)
+            {
+                GenerateHeaderHtml(htmlHeader, "CC:", "cc", message.CC, 8);
+            }
 
-        //private string GenerateHeaderHtmlAddresses(int limit)
-        //{
-        //    StringBuilder htmlHeader = new StringBuilder();
-        //    if (Message.To.Length > 0)
-        //    {
-        //        htmlHeader.Append(GenerateHeaderHtml("To:", "to", Message.To, "", "", limit));
-        //    }
+            if (message.BlindCarbonCopy.Count > 0)
+            {
+                GenerateHeaderHtml(htmlHeader, "BCC:", "bcc", message.BCC, 8);
+            }
 
-        //    if (Message.CC.Length > 0)
-        //    {
-        //        htmlHeader.Append(GenerateHeaderHtml("CC:", "cc", Message.CC, "", "", limit));
-        //    }
 
-        //    if (Message.BCC.Length > 0)
-        //    {
-        //        htmlHeader.Append(GenerateHeaderHtml("BCC:", "bcc", Message.BCC, "", "", limit));
-        //    }
 
-        //    return htmlHeader.ToString();
-        //}
+            htmlHeader.Append("</table>");
+            htmlHeader.Append("</body>");
+            htmlHeader.Append("/html>");
+
+            return htmlHeader.ToString();
+        }
+
 
         void OnLinkClicked(Control owner, string url, Rectangle bounds)
         {
