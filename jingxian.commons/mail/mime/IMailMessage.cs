@@ -11,39 +11,35 @@ namespace jingxian.mail.mime
     /// </summary>
     public interface IMailMessage
     {
-        MailAddress From { get; set; }
+        MailAddress From { get; }
 
-        MailAddressCollection To { get; set; }
+        MailAddressCollection To { get; }
 
         // 就是CC字段
-        MailAddressCollection CarbonCopy { get; set; }
+        MailAddressCollection CarbonCopy { get; }
 
         // 就是BCC字段
-        MailAddressCollection BlindCarbonCopy { get; set; }
+        MailAddressCollection BlindCarbonCopy { get; }
 
-        string Subject { get; set; }
+        string TextMessage { get; }
 
-        string Source { get; set; }
+        string HeaderFrom { get; }
 
-        string TextMessage { get; set; }
+        string HeaderMessageId { get; }
 
-        string HeaderFrom { get; set; }
+        string HeaderCC { get; }
 
-        string HeaderMessageId { get; set; }
+        string HeaderBCC { get; }
 
-        string HeaderCC { get; set; }
+        string HeaderSubject { get;}
 
-        string HeaderBCC { get; set; }
+        string HeaderReferences { get; }
 
-        string HeaderSubject { get; set; }
+        string HeaderTO { get;}
 
-        string HeaderReferences { get; set; }
+        DateTime HeaderDate { get; }
 
-        string HeaderTO { get; set; }
-
-        DateTime HeaderDate { get; set; }
-
-        DateTime ReceivedDate { get; set; }
+        DateTime ReceivedDate { get; }
 
         bool IsNull();
     }

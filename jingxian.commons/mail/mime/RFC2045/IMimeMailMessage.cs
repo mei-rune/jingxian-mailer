@@ -9,13 +9,13 @@ namespace jingxian.mail.mime.RFC2045
 {
     public interface IMimeMailMessage : IMailMessage
     {
-        IDictionary<string, string> Body { get; set; }
+        IDictionary<string, string> Body { get; }
 
-        IList<IAttachment> Attachments { get; set; }
+        IList<IAttachment> Attachments { get; }
 
-        IList<IMimeMailMessage> Messages { get; set; }
+        IList<IMimeMailMessage> Messages { get; }
 
-        IList<AlternateView> Views { get; set; }
+        IList<AlternateView> Views { get; }
 
         MailMessage ToMailMessage();
     }
