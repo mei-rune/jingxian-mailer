@@ -266,6 +266,7 @@
     <Compile Include="controls\ServerListDialog.designer.cs">
       <DependentUpon>ServerListDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\MessageViewer.cs" />
     <None Include="Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings1.Designer.cs</LastGenOutput>

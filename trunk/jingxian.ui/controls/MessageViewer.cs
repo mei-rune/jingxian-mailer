@@ -15,7 +15,7 @@ namespace jingxian.ui.controls
 
     public partial class MessageViewer : UserControl
     {
-        bool ShowAllAddress = false;
+        public bool ShowAllAddress = false;
         string CSS = "";
 
         public MessageViewer()
@@ -23,27 +23,7 @@ namespace jingxian.ui.controls
             InitializeComponent();
         }
 
-
-        private void generateTitle(StringBuilder htmlHeader
-            , string caption
-            , string captionURL)
-        {
-            if (string.IsNullOrEmpty(captionURL))
-            {
-                htmlHeader.Append("<a href='");
-                htmlHeader.Append(captionURL);
-                htmlHeader.Append("'>");
-                htmlHeader.Append(HTMLHelper.XMLize(caption));
-                htmlHeader.Append("</a>");
-            }
-            else
-            {
-                htmlHeader.Append(HTMLHelper.XMLize(caption));
-            } 
-        }
-
-
-        private void generateHeaderHtml(StringBuilder htmlHeader
+        private void generateAddresses(StringBuilder htmlHeader
             , IEnumerable<MailAddress> addresses
             , int limit)
         {
@@ -53,30 +33,30 @@ namespace jingxian.ui.controls
             if (ShowAllAddress)
                 addresscount = int.MaxValue;
 
-            using (IEnumerator<MailAddress> enumerator = addresses.GetEnumerator())
+            foreach (MailAddress address in addresses)
             {
-                while (enumerator.MoveNext())
+                if (0 > --addresscount)
+                    break;
+
+                if (bFirst)
                 {
-                    if (0 > --addresscount)
-                        break;
-
-                    MailAddress address = enumerator.Current;
-                    if (bFirst == false)
-                    {
-                        htmlHeader.Append(", ");
-                        bFirst = false;
-                    }
-
-                    htmlHeader.Append("<tooltip text='");
-                    htmlHeader.Append(HTMLHelper.XMLize(address.DisplayName));
-                    htmlHeader.Append("'>");
-
-                    htmlHeader.Append("<a href='");
-                    htmlHeader.Append(HTMLHelper.XMLize(address.DisplayName));
-                    htmlHeader.Append("'>");
-                    htmlHeader.Append(HTMLHelper.XMLize(address.DisplayName) + "</a>");
-                    htmlHeader.Append("</tooltip>");
+                    bFirst = false;
                 }
+                else
+                {
+                    htmlHeader.Append(", ");
+                }
+
+                htmlHeader.Append("<tooltip text='");
+                htmlHeader.Append(HTMLHelper.XMLize(address.DisplayName));
+                htmlHeader.Append("'>");
+
+                htmlHeader.Append("<a href='");
+                htmlHeader.Append(HTMLHelper.XMLize(address.DisplayName));
+                htmlHeader.Append("'>");
+                htmlHeader.Append(HTMLHelper.XMLize(address.DisplayName) + "</a>");
+                htmlHeader.Append("</tooltip>");
+
             }
 
             if (0 > addresscount)
@@ -85,7 +65,7 @@ namespace jingxian.ui.controls
             }
         }
 
-        private string GenerateHeaderHtml(IMailMessage message)
+        private string generateHeader(IMailMessage message)
         {
             StringBuilder htmlHeader = new StringBuilder();
 
@@ -99,43 +79,53 @@ namespace jingxian.ui.controls
             htmlHeader.Append("<body>");
             htmlHeader.Append("<table>");
 
-            generateBeginTitle( "headerSubject" );
-            generateTitle(htmlHeader, Resource.SUBJECT, "" );
-            generateEndTitle( );
+            //generateBeginField( htmlHeader, "headerSubject" );
 
-            generateBeginField("headerSubject");
+            htmlHeader.AppendFormat("<tr class=\"{0}\" ><td></td><td>{1}</td><td>", "headerSubject", Resource.SUBJECT ); 
             generateTitle(htmlHeader, message.HeaderSubject, "");
-            generateEndField();
+            htmlHeader.Append("</td></tr>");
 
 
-            htmlHeader.Append("<font size='13'>");
-            HTMLHelper.GenerateSubstringWithTooltip(htmlHeader, message.Subject, 82);
-            htmlHeader.Append("</font>");
-
-            htmlHeader.Append("<br/><font size='8' color='#444444'>");
+            htmlHeader.AppendFormat("<tr class=\"{0}\" ><td></td><td>{1}</td><td>", "headerDate", Resource.DATE); 
+            htmlHeader.Append("<font size='8' color='#444444'>");
             htmlHeader.Append(message.HeaderDate);
             htmlHeader.Append("</font>");
+            htmlHeader.Append("</td></tr>");
 
             if (null != message.From)
             {
-                GenerateHeaderHtml(htmlHeader, Resource.FROM, "from", new MailAddress[] { message.From }, 8);
+                htmlHeader.AppendFormat("<tr class=\"{0}\" ><td></td><td>{1}</td><td>", "headerFrom", Resource.FROM);
+
+                generateAddresses(htmlHeader, new MailAddress[] { message.From }, 8);
+
+                htmlHeader.Append("</td></tr>");
             }
             if (message.To.Count > 0)
             {
-                GenerateHeaderHtml(htmlHeader, "To:", "to", message.To, 8);
+                htmlHeader.AppendFormat("<tr class=\"{0}\" ><td></td><td>{1}</td><td>", "headerTo", Resource.TO);
+
+                generateAddresses(htmlHeader, message.To, 8);
+
+                htmlHeader.Append("</td></tr>");
             }
 
             if (message.CarbonCopy.Count > 0)
             {
-                GenerateHeaderHtml(htmlHeader, "CC:", "cc", message.CC, 8);
+                htmlHeader.AppendFormat("<tr class=\"{0}\" ><td></td><td>{1}</td><td>", "headerFrom", Resource.CC);
+
+                generateAddresses(htmlHeader, message.CarbonCopy, 8);
+
+                htmlHeader.Append("</td></tr>");
             }
 
             if (message.BlindCarbonCopy.Count > 0)
             {
-                GenerateHeaderHtml(htmlHeader, "BCC:", "bcc", message.BCC, 8);
+                htmlHeader.AppendFormat("<tr class=\"{0}\" ><td></td><td>{1}</td><td>", "headerFrom", Resource.BCC);
+
+                generateAddresses(htmlHeader, message.BlindCarbonCopy, 8);
+
+                htmlHeader.Append("</td></tr>");
             }
-
-
 
             htmlHeader.Append("</table>");
             htmlHeader.Append("</body>");
@@ -144,6 +134,14 @@ namespace jingxian.ui.controls
             return htmlHeader.ToString();
         }
 
+
+        public void SetMessageInstance(IMailMessage message)
+        {
+            if (null == message)
+                throw new ArgumentNullException( "message" );
+
+            this.titleBrowser.DocumentText = generateHeader(message);
+        }
 
         void OnLinkClicked(Control owner, string url, Rectangle bounds)
         {
